@@ -45,6 +45,7 @@ export default function LoginPage() {
       email: data.email,
       role: 'student',
       avatar: 'https://picsum.photos/seed/john/100/100',
+      enrolledCourseIds: []
     }));
 
     toast.success('Welcome back, John!');
