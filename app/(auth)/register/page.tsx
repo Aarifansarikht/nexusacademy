@@ -46,6 +46,7 @@ export default function RegisterPage() {
       email: data.email,
       role: 'student',
       avatar: `https://picsum.photos/seed/${data.name}/100/100`,
+      enrolledCourseIds: []
     }));
 
     toast.success('Account created successfully!');
