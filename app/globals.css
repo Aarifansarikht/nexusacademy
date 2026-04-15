@@ -1,0 +1,186 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-heading);
+    --font-sans: var(--font-sans);
+    
+    --color-background: var(--background);
+    --color-background-soft: var(--background-soft);
+    --color-foreground: var(--foreground);
+    
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 2.0);
+}
+
+:root {
+    --background: #fafaf9; /* stone-50 */
+    --background-soft: #f5f5f4; /* stone-100 */
+    --foreground: #1c1917; /* stone-900 */
+    
+    --card: #ffffff;
+    --card-foreground: #1c1917;
+    
+    --popover: #ffffff;
+    --popover-foreground: #1c1917;
+    
+    --primary: #2563eb; /* Education Blue */
+    --primary-foreground: #ffffff;
+    
+    --secondary: #e7e5e4; /* stone-200 */
+    --secondary-foreground: #1c1917;
+    
+    --muted: #f5f5f4;
+    --muted-foreground: #78716c; /* stone-500 */
+    
+    --accent: #2563eb;
+    --accent-foreground: #ffffff;
+    
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    
+    --border: #e7e5e4;
+    --input: #e7e5e4;
+    --ring: #2563eb;
+    
+    --radius: 2px; /* Brutalist sharp corners */
+}
+
+.dark {
+    --background: #121212; /* Soft dark background */
+    --background-soft: #1e1e1e; /* Slightly lighter for contrast */
+    --foreground: #f5f5f5;
+    
+    --card: #1e1e1e;
+    --card-foreground: #f5f5f5;
+    
+    --popover: #1e1e1e;
+    --popover-foreground: #f5f5f5;
+    
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    
+    --secondary: #2a2a2a;
+    --secondary-foreground: #f5f5f5;
+    
+    --muted: #2a2a2a;
+    --muted-foreground: #a0a0a0;
+    
+    --accent: #3b82f6;
+    --accent-foreground: #ffffff;
+    
+    --border: #333333;
+    --input: #333333;
+    --ring: #3b82f6;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 text-sm;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-background/80 backdrop-blur-md border border-border;
+  }
+  
+  .raw-shadow {
+    @apply shadow-[4px_4px_0px_0px_var(--color-primary)] dark:shadow-[4px_4px_0px_0px_var(--color-primary)];
+  }
+  
+  .raw-border {
+    @apply border border-primary/30;
+  }
+
+  .raw-border-thick {
+    @apply border-2 border-primary/30;
+  }
+
+  .skewed {
+    @apply skew-x-[-10deg];
+  }
+
+  .skewed-content {
+    @apply skew-x-[10deg];
+  }
+
+  .soft-texture {
+    background-image: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  
+  .soft-texture::before {
+    content: "";
+    @apply absolute inset-0 bg-background/95 z-0;
+  }
+
+  .pixel-grid {
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.1;
+  }
+
+  .edu-texture {
+    background-image: 
+      linear-gradient(var(--foreground) 1px, transparent 1px),
+      linear-gradient(90deg, var(--foreground) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
